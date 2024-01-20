@@ -32,6 +32,8 @@ michar --help
 brew install pyenv
 pyenv install 3.9
 pyenv local 3.9
+brew install pipx
+pipx install tox
 ```
 
 #### poetry
@@ -48,7 +50,7 @@ poetry install
 ### tox
 
 ```shell
-poetry run tox -e pytest
+tox -e pytest
 ```
 
 ## build
