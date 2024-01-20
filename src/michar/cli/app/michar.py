@@ -16,7 +16,7 @@ class MichiOptions(object):
 
 
 @tui(command="ui", help="Open terminal UI")
-@click.group(context_settings=dict(help_option_names=["-h", "--help"]), chain=True)
+@click.group(context_settings=dict(help_option_names=["-h", "--help"]))
 @debug_option
 @click.version_option(__version__, prog_name=__name__)
 @click.pass_context
