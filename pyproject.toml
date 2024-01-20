@@ -18,7 +18,6 @@ build = "^1.0.3"
 pytest = "^7.4.3"
 black = "^23.10.1"
 mypy = "^1.6.1"
-importlib = "^1.0.4"
 isort = "^5.13.0"
 jupyter = "^1.0.0"
 pandas = "^2.1.4"
@@ -36,7 +35,7 @@ selenium = "^4.16.0"
 webdriver-manager = "^4.0.1"
 
 [tool.poetry.scripts]
-michar = "src.michar.cli.app.michar:main"
+michar = "michar.cli.app.michar:main"
 
 
 [build-system]

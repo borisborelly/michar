@@ -48,7 +48,7 @@ poetry install
 ### tox
 
 ```shell
-poetry run tox -e pytest
+tox -e pytest
 ```
 
 ## build

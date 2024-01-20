@@ -7,7 +7,6 @@ from trogon import tui
 
 
 debug_option: click.Option = click.option("-d", "--debug", default=False, is_flag=True, help="debug logs")
-help_option: click.Option = click.option("-h", "--help", is_flag=True, default=None, help="show help and exit")
 
 log: logging.Logger = util.get_logger()
 
@@ -18,7 +17,6 @@ class MichiOptions(object):
 
 @tui(command="ui", help="Open terminal UI")
 @click.group(context_settings=dict(help_option_names=["-h", "--help"]), chain=True)
-@help_option
 @debug_option
 @click.version_option(__version__, prog_name=__name__)
 @click.pass_context
