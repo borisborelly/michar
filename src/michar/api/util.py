@@ -6,17 +6,11 @@ from rich.traceback import install
 from dataclasses import dataclass, field
 from selenium import webdriver
 from selenium.webdriver.remote import webdriver as webdrv
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webdriver import WebDriver as RemoteWebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
-# from selenium.webdriver.chrome.service import Service as BraveService
-# from webdriver_manager.chrome import ChromeDriverManager
-# from webdriver_manager.core.os_manager import ChromeType
-# from selenium.webdriver.firefox.service import Service as FirefoxService
-# from webdriver_manager.firefox import GeckoDriverManager
 
 install()
 
