@@ -45,3 +45,13 @@ class FBIClient:
         for state in state_abbrs:
             for ori in self.get_state_agency_oris(state):
                 yield ori
+    
+    def get_agency_victim_location(self, ori: str, from_year: int, to_year: int):
+        category = 'victim'
+        _type = 'location'
+        request_path = f'nibrs/agency/{ori}/all/{category}/{_type}'
+        request_url = f'{self.endpoint}/{request_path}'
+        resp = self.session.get(request_url, params={'from': from_year, 'to': to_year})
+        resp.raise_for_status()
+        resp_dict = resp.json()
+        return resp_dict

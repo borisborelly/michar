@@ -2,7 +2,7 @@ import json
 import os
 import pathlib
 import time
-from datetime import timedelta
+from typing import *
 
 import click
 import platformdirs
@@ -13,6 +13,30 @@ from michar.api.fbi.client import FBIClient
 
 
 log = structlog.get_logger()
+
+class MicharFBIApp:
+    agency_oris: Iterable[str]
+    cache_dir: pathlib.Path
+    client: FBIClient
+
+    def __init__(self) -> None:
+        dir = platformdirs.user_cache_dir("michar", "Michar Industries Ltd.")
+        os.makedirs(dir, exist_ok=True)
+    
+    @property
+    def ori_cache_path(self) -> pathlib.Path:
+        self.cache_dir / 'ori_cache.json'
+        
+
+    def load_agency_oris(self) -> Iterable[str]:
+        cache_file_exists = self.ori_cache_path.exists()
+        if cache_file_exists:
+            with self.ori_cache_path.open('r') as fin:
+                self.oris = json.load(fin)
+        else:
+            init(self.client)
+
+
 
 @gooza.group()
 @click.pass_context
@@ -26,10 +50,15 @@ def fbi(ctx: click.Context):
     To authenticate, set an environment variable named FBI_API_KEY.
     You can request an API_KEY here https://api.data.gov/signup/
     """
-    ctx.obj = FBIClient()
+    ctx.obj = MicharFBIApp()
 
 @fbi.command
 @click.pass_obj
+def locations(app: MicharFBIApp):
+    for ori in agency_oris:
+        
+    pass
+
 def init(client: FBIClient):
     '''Will create an application cache of key identifiers. Run before other subcommands.'''
     dir = platformdirs.user_cache_dir("michar", "Michar Industries Ltd.")
