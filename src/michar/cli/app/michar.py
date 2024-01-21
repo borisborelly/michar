@@ -20,21 +20,15 @@ class MichiOptions(object):
 @debug_option
 @click.version_option(__version__, prog_name=__name__)
 @click.pass_context
-def gooza(ctx, debug) -> None:
+def gooza(ctx: click.Context, debug) -> None:
     if debug:
         for logger in [logging.getLogger(name) for name in logging.root.manager.loggerDict]:
             logger.setLevel(logging.DEBUG)
-    log.debug(f"Starting micha library ... {__version__}")
+    log.debug(f"Starting michar library ... {__version__}")
 
 # TODO fix * import
 from .cmd.crawler import *
 from .cmd.reporter import *
-
-#import .cmd.crawler
-#import .cmd.reporter
-#from .cmd.crawler import crawl
-#from .cmd.reporter import report
-#from .cmd import crawler, reporter
 
 def main():
     """

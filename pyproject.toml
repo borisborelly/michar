@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "michar"
-version = "0.1.0"
+version = "0.1.1"
 description = "micha and charlie are the best"
 authors = ["Boris"]
 readme = "README.md"
