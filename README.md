@@ -2,17 +2,11 @@
 
 ## usage
 
-### TODO generate pydocs 
-
-[docs](./docs/)
+[read the docs](https://borisborelly.github.io/michar/)
 
 ```shell
 michar --help
 ```
-
-### configuration
-
-[config.toml](./src/michar/config.toml)
 
 ## development
 
@@ -32,6 +26,11 @@ michar --help
 brew install pyenv
 pyenv install 3.9
 pyenv local 3.9
+```
+
+#### tox
+
+```shell
 brew install pipx
 pipx install tox
 ```
@@ -45,14 +44,18 @@ poetry env use `pyenv which python`
 poetry install
 ```
 
-## test
+## Verifcation
 
-### tox
+### pytests
 
 ```shell
 tox -e pytest
 ```
 
-## build
+### pydocs
+
+```shell
+tox -e pydocs
+```
 
 ### TODO tox targets
