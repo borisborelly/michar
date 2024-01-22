@@ -2,17 +2,11 @@
 
 ## usage
 
-### TODO generate pydocs 
-
-[docs](./docs/)
+[read the docs](./docs/michar/index.html)
 
 ```shell
 michar --help
 ```
-
-### configuration
-
-[config.toml](./src/michar/config.toml)
 
 ## development
 
@@ -45,14 +39,18 @@ poetry env use `pyenv which python`
 poetry install
 ```
 
-## test
+## Verifcation
 
-### tox
+### pytests
 
 ```shell
 tox -e pytest
 ```
 
-## build
+### pydocs
+
+```shell
+tox -e pydocs
+```
 
 ### TODO tox targets
