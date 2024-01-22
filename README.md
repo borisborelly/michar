@@ -2,7 +2,7 @@
 
 ## usage
 
-[read the docs](./docs/michar/index.html)
+[read the docs](https://borisborelly.github.io/michar/)
 
 ```shell
 michar --help
