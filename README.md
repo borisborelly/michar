@@ -26,6 +26,11 @@ michar --help
 brew install pyenv
 pyenv install 3.9
 pyenv local 3.9
+```
+
+#### tox
+
+```shell
 brew install pipx
 pipx install tox
 ```
