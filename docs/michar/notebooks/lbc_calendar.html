@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marta Example Michar library &mdash; michar 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="app" href="../app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            michar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../michar/modules.html">michar</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../app.html">app</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LBC Calendar:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Marta Example Michar library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#'crawl'-a-website-for-data">‘crawl’ a website for data</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">michar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Marta Example Michar library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/lbc_calendar.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Marta-Example-Michar-library">
+<h1>Marta Example Michar library<a class="headerlink" href="#Marta-Example-Michar-library" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>import michar</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">michar</span>
+<span class="kn">import</span> <span class="nn">michar.api.util</span> <span class="k">as</span> <span class="nn">util</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">michar</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> version </span><span class="si">{</span><span class="n">michar</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[17:46:19] </span><span style="color: #000080; text-decoration-color: #000080">INFO    </span> Using michar version <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.1</span>.<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>                                                       <a href="file:///var/folders/hl/w6_pkxfd2jv6cjy4d67qkcrc0000gn/T/ipykernel_3512/548079639.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">548079639.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///var/folders/hl/w6_pkxfd2jv6cjy4d67qkcrc0000gn/T/ipykernel_3512/548079639.py#4" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">4</span></a>
+</pre></div>
+</div>
+<section id="'crawl'-a-website-for-data">
+<h2>‘crawl’ a website for data<a class="headerlink" href="#'crawl'-a-website-for-data" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>this example is for a <code class="docutils literal notranslate"><span class="pre">.aspx</span></code> javascript website</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://longbeach.legistar.com/Calendar.aspx&quot;</span>
+
+<span class="c1"># this will open a browser window for the URL since it&#39;s javascript</span>
+<span class="c1"># right now it assumes firefox</span>
+<span class="n">lbc_krawler</span><span class="p">:</span> <span class="n">util</span><span class="o">.</span><span class="n">Krawl</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_crawler</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">URL</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> The geckodriver version <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.33</span>.<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span><span style="font-weight: bold">)</span> detected in PATH at                    <a href="file:///Users/boris/Library/Caches/pypoetry/virtualenvs/michar-Kjlsv4OL-py3.12/lib/python3.12/site-packages/selenium/webdriver/common/selenium_manager.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">selenium_manager.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/boris/Library/Caches/pypoetry/virtualenvs/michar-Kjlsv4OL-py3.12/lib/python3.12/site-packages/selenium/webdriver/common/selenium_manager.py#144" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">144</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         <span style="color: #800080; text-decoration-color: #800080">/opt/homebrew/bin/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">geckodriver</span> might not be compatible with the detected <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                       </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         firefox version <span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">121.0</span>.<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span><span style="font-weight: bold">)</span>; currently, geckodriver <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.34</span>.<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0</span> is recommended <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                       </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         for firefox <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">121</span>.*, so it is advised to delete the driver in PATH and    <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                       </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         retry                                                                   <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                       </span>
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">div_data_test</span> <span class="o">=</span> <span class="s1">&#39;ctl00_ContentPlaceHolder1_divGrid&#39;</span>
+
+<span class="n">content_div</span> <span class="o">=</span> <span class="n">lbc_krawler</span><span class="o">.</span><span class="n">get_div</span><span class="p">(</span><span class="n">div_id</span><span class="o">=</span><span class="n">div_data_test</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">content_div</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[17:46:24] </span><span style="color: #000080; text-decoration-color: #000080">INFO    </span> <span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">selenium.webdriver.remote.webelement.WebElement</span><span style="color: #000000; text-decoration-color: #000000"> </span>                               <a href="file:///var/folders/hl/w6_pkxfd2jv6cjy4d67qkcrc0000gn/T/ipykernel_3512/3552996729.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">3552996729.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///var/folders/hl/w6_pkxfd2jv6cjy4d67qkcrc0000gn/T/ipykernel_3512/3552996729.py#4" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">4</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         <span style="color: #000000; text-decoration-color: #000000; font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">session</span><span style="color: #000000; text-decoration-color: #000000">=</span><span style="color: #008000; text-decoration-color: #008000">"9e8e9474-ce9e-4c4d-b3fd-aba39638e448"</span><span style="color: #000000; text-decoration-color: #000000">, </span>                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">               </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">           </span>         <span style="color: #808000; text-decoration-color: #808000">element</span><span style="color: #000000; text-decoration-color: #000000">=</span><span style="color: #008000; text-decoration-color: #008000">"700e4cb5-bc1d-49a4-ab64-eb48c9debe83"</span><span style="color: #000000; text-decoration-color: #000000; font-weight: bold">)</span><span style="font-weight: bold">&gt;</span>                                <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">               </span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># element_data_test = &#39;dynamic element name here&#39;</span>
+<span class="c1"># lbc_krawler.get_element(element_id=element_data_test)</span>
+<span class="c1"># log.info(element_data_test)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">lbc_krawler</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../app.html" class="btn btn-neutral float-left" title="app" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Boris, Rob.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
