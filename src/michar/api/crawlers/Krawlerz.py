@@ -59,13 +59,19 @@ class SeleniumKrawler(Krawl):
         self._driver.get(self.url)
 
 
-def get_crawler(url: str, impl: str = "Selenium") -> Krawl:
+@dataclass
+class LbcCrawler(SeleniumKrawler):
+    source = "lbc"
+
+
+def get_crawler(url: str, source: str) -> Krawl:
     """
     gets web crawler
     """
-    log.debug(f"crawling {url=} using {impl=}")
-    if impl == "Selenium":
-        krawler = SeleniumKrawler(url=url)
-    else:
-        log.error("add another crawler impl")
-    return krawler
+    log.debug(f"crawling {source=} @ {url=}")
+
+    match source:
+        case "lbc":
+            return LbcCrawler(url)
+        case _:
+            log.error("add another crawler impl")

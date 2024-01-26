@@ -25,7 +25,7 @@ def crawl(source: str):
     profile: ConfigProfile = ConfigProfile()
 
     url: str = profile.get_source_url(source)
-    krawler: krawlers.Krawl = krawlers.get_crawler(url=url)
+    krawler: krawlers.Krawl = krawlers.get_crawler(url=url, source=source)
 
     # content_div = krawler.get_div("ctl00_ContentPlaceHolder1_divGrid")
     # log.info(content_div)
