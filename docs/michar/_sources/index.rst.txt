@@ -30,6 +30,15 @@ CLI
 
 .. only:: html
 
+LBC Calendar
+==================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: LBC Calendar:
+
+   notebooks/lbc_calendar
+
 
 
 Indices and tables

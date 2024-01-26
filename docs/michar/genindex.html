@@ -13,6 +13,7 @@
         <script src="_static/documentation_options.js?v=a58bc63e"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -44,6 +45,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="app.html">app</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">LBC Calendar:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lbc_calendar.html">Marta Example Michar library</a></li>
+</ul>
 
         </div>
       </div>
@@ -74,6 +79,7 @@
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#M"><strong>M</strong></a>
@@ -141,7 +147,19 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl.browser">browser (michar.api.util.Krawl attribute)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl.browser">browser (michar.api.crawlers.Krawlerz.Krawl attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="michar/michar.api.html#michar.api.profile.ConfigProfile.config">config (michar.api.profile.ConfigProfile property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="michar/michar.api.html#michar.api.profile.ConfigProfile">ConfigProfile (class in michar.api.profile)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -149,15 +167,17 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.get_crawler">get_crawler() (in module michar.api.util)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.get_crawler">get_crawler() (in module michar.api.crawlers.Krawlerz)</a>
 </li>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl.get_div">get_div() (michar.api.util.Krawl method)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl.get_div">get_div() (michar.api.crawlers.Krawlerz.Krawl method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl.get_element">get_element() (michar.api.util.Krawl method)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl.get_element">get_element() (michar.api.crawlers.Krawlerz.Krawl method)</a>
 </li>
       <li><a href="michar/michar.api.html#michar.api.util.get_logger">get_logger() (in module michar.api.util)</a>
+</li>
+      <li><a href="michar/michar.api.html#michar.api.profile.ConfigProfile.get_source_url">get_source_url() (michar.api.profile.ConfigProfile method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -165,7 +185,7 @@
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl">Krawl (class in michar.api.util)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl">Krawl (class in michar.api.crawlers.Krawlerz)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -209,13 +229,48 @@
         <li><a href="app.html#cmdoption-michar-report-o">-o</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     michar.api
 
       <ul>
         <li><a href="michar/michar.api.html#module-michar.api">module</a>
+</li>
+      </ul></li>
+      <li>
+    michar.api.config
+
+      <ul>
+        <li><a href="michar/michar.api.config.html#module-michar.api.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    michar.api.crawlers
+
+      <ul>
+        <li><a href="michar/michar.api.crawlers.html#module-michar.api.crawlers">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    michar.api.crawlers.Krawlerz
+
+      <ul>
+        <li><a href="michar/michar.api.crawlers.html#module-michar.api.crawlers.Krawlerz">module</a>
+</li>
+      </ul></li>
+      <li>
+    michar.api.profile
+
+      <ul>
+        <li><a href="michar/michar.api.html#module-michar.api.profile">module</a>
+</li>
+      </ul></li>
+      <li>
+    michar.api.sources
+
+      <ul>
+        <li><a href="michar/michar.api.sources.html#module-michar.api.sources">module</a>
 </li>
       </ul></li>
       <li>
@@ -233,6 +288,16 @@
 </li>
         <li><a href="michar/michar.api.html#module-michar.api">michar.api</a>
 </li>
+        <li><a href="michar/michar.api.config.html#module-michar.api.config">michar.api.config</a>
+</li>
+        <li><a href="michar/michar.api.crawlers.html#module-michar.api.crawlers">michar.api.crawlers</a>
+</li>
+        <li><a href="michar/michar.api.crawlers.html#module-michar.api.crawlers.Krawlerz">michar.api.crawlers.Krawlerz</a>
+</li>
+        <li><a href="michar/michar.api.html#module-michar.api.profile">michar.api.profile</a>
+</li>
+        <li><a href="michar/michar.api.sources.html#module-michar.api.sources">michar.api.sources</a>
+</li>
         <li><a href="michar/michar.api.html#module-michar.api.util">michar.api.util</a>
 </li>
       </ul></li>
@@ -242,11 +307,13 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.SeleniumKrawler">SeleniumKrawler (class in michar.api.util)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.SeleniumKrawler">SeleniumKrawler (class in michar.api.crawlers.Krawlerz)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl.shutdown">shutdown() (michar.api.util.Krawl method)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl.shutdown">shutdown() (michar.api.crawlers.Krawlerz.Krawl method)</a>
+</li>
+      <li><a href="michar/michar.api.html#michar.api.profile.ConfigProfile.sources">sources (michar.api.profile.ConfigProfile property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -254,10 +321,10 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="michar/michar.api.html#michar.api.util.Krawl.url">url (michar.api.util.Krawl attribute)</a>
+      <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.Krawl.url">url (michar.api.crawlers.Krawlerz.Krawl attribute)</a>
 
       <ul>
-        <li><a href="michar/michar.api.html#michar.api.util.SeleniumKrawler.url">(michar.api.util.SeleniumKrawler attribute)</a>
+        <li><a href="michar/michar.api.crawlers.html#michar.api.crawlers.Krawlerz.SeleniumKrawler.url">(michar.api.crawlers.Krawlerz.SeleniumKrawler attribute)</a>
 </li>
       </ul></li>
   </ul></td>
