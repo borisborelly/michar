@@ -2,7 +2,14 @@ import rich_click as click
 import michar.api.util as util
 from michar.cli.app.michar import gooza
 
-report_type_opt: click.Option = click.option("-o", "--reportType", required=False, default="csv", type=str, help="what kind of report to generate")
+report_type_opt: click.Option = click.option(
+    "-o",
+    "--reportType",
+    required=False,
+    default="csv",
+    type=str,
+    help="what kind of report to generate",
+)
 
 
 @gooza.command()
