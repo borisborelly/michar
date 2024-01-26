@@ -509,21 +509,6 @@ files = [
 ]
 
 [[package]]
-name = "city_scrapers"
-version = "0.0.0"
-description = ""
-optional = false
-python-versions = "*"
-files = []
-develop = false
-
-[package.source]
-type = "git"
-url = "https://github.com/City-Bureau/city-scrapers.git"
-reference = "HEAD"
-resolved_reference = "16e9d489b4c803ca67a78a7a756484b2bd870110"
-
-[[package]]
 name = "city-scrapers-core"
 version = "0.10.1"
 description = "Core functionality for City Scrapers projects"
@@ -3964,4 +3949,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "b0b573aec09f6f9807b91d3c0fd464c3a81993f7d0d88fc4281d152777476289"
+content-hash = "23e539b293cb46bab92eb1fc56810a4f024dacdb5f1e51024f4b2039f60c1583"
