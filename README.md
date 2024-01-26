@@ -55,6 +55,10 @@ tox -e pytest
 ### pydocs
 
 ```shell
+brew install pandoc
+```
+
+```shell
 tox -e pydocs
 ```
 
