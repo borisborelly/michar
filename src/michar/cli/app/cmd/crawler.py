@@ -6,15 +6,6 @@ from michar.cli.app.michar import gooza
 from michar.api.profile import ConfigProfile
 
 
-url_option: click.Option = click.option(
-    "-U",
-    "--url",
-    required=False,
-    default="https://longbeach.legistar.com/calendar.aspx",
-    type=str,
-    help="website to crawl for data",
-)
-
 source_option: click.Option = click.option(
     "-s",
     "--source",
