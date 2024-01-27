@@ -2,7 +2,8 @@
 name = "michar"
 
 [env.sources.lbc]
-url = "https://longbeach.legistar.com/calendar.aspx"
+url = "https://longbeach.legistar.com/Calendar.aspx?From=RSS&Mode={year}"
+
 
 [env.sources.fbi]
 url = "https://api.usa.gov/crime/fbi/cde"

@@ -22,12 +22,8 @@ def crawl(source: str):
     crawl websites for data
     """
     log = util.get_logger()
-    profile: ConfigProfile = ConfigProfile()
 
-    url: str = profile.get_source_url(source)
-    krawler: krawlers.Krawl = krawlers.get_crawler(url=url, source=source)
+    krawler: krawlers.Krawl = krawlers.get_crawler(source=source)
 
-    # content_div = krawler.get_div("ctl00_ContentPlaceHolder1_divGrid")
-    # log.info(content_div)
-
-    krawler.shutdown()
+    # torrence
+    # https://www.torranceca.gov/government/city-clerk/commissions-and-advisory-boards/planning-commission/agendas-and-minutes/-folder-1334

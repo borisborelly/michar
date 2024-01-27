@@ -5,6 +5,9 @@ import logging
 from michar import __version__, __name__
 from trogon import tui
 
+from rich.traceback import install
+
+install(show_locals=True)
 
 debug_option: click.Option = click.option(
     "-d", "--debug", default=False, is_flag=True, help="debug logs"
