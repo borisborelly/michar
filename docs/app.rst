@@ -1,5 +1,5 @@
 app
 ----
-.. click:: michar.cli.app.michar:gooza
-   :prog: michar
+.. click:: osrs.cli.app.fortnite:gooza
+   :prog: fortnite
    :nested: full

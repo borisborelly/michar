@@ -23,7 +23,11 @@ def crawl(source: str):
     """
     log = util.get_logger()
 
-    krawler: krawlers.Krawl = krawlers.get_crawler(source=source)
+    krawler: krawlers.LbcCityKrawler = krawlers.get_crawler(source=source)
+
+    results: dict = krawler.crawl()
+
+    print(results)
 
     # torrence
     # https://www.torranceca.gov/government/city-clerk/commissions-and-advisory-boards/planning-commission/agendas-and-minutes/-folder-1334

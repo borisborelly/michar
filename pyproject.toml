@@ -33,6 +33,8 @@ selenium = "^4.16.0"
 webdriver-manager = "^4.0.1"
 nbsphinx = "^0.9.3"
 feedparser = "^6.0.11"
+legistar = {git = "https://github.com/opencivicdata/python-legistar-scraper.git"}
+muniscrapers = {git = "https://github.com/opencivicdata/scrapers-us-municipal"}
 
 [tool.poetry.scripts]
 michar = "michar.cli.app.michar:main"
