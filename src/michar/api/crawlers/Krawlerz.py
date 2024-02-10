@@ -49,26 +49,23 @@ class LegistarScraper(object):
         print(f"{ending_date_range=}")
         # /events?$filter=EventDate+ge+datetime%272014-09-01%27+and+EventDate+lt+datetime%272014-10-01%27
         if starting_date_range:
-            self.filters.update({"EventDate+ge+datetime": starting_date_range})
+            self.filters.update({"EventDate>datetime": starting_date_range})
         elif ending_date_range:
-            self.filters.update({"EventDate+lt+datetime": ending_date_range})
+            self.filters.update({"EventDate<datetime": ending_date_range})
 
     def crawl_matters(self, matter_filters: dict = None):
         if matter_filters:
             if matter_filters["year"]:
                 self.withMatterFilters(matter_year=matter_filters["year"])
-        self._apply_filters()
 
         return self.matters
 
-    def crawl_events(self, event_filters: dict = None):
+    def crawl_events(self, event_filters: dict = None) -> dict:
         if event_filters:
             if event_filters["start_time"]:
                 self.withEventFilters(starting_date_range=event_filters["start_time"])
             if event_filters["end_time"]:
                 self.withEventFilters(starting_date_range=event_filters["end_time"])
-
-        self._apply_filters()
 
         return self.events
 
@@ -94,6 +91,14 @@ class LegistarScraper(object):
         if self.filters:
             endpoint = self._apply_filters(endpoint)
 
+        # TODO add response handling for results > 1000
+        # Note that queries replies are limited to 1000 responses.
+        # Even with this limit, some calls may return a large amount of data.
+        # To make this query more performant:
+        # 1) limiting reults to a smaller set of items
+        # 2) obtain more items via a second query, use ODATA parameters to page the output like this:
+        #       https://webapi.legistar.com/v1/{Client}/matters?$top=10&$skip=0
+        #       https://webapi.legistar.com/v1/{Client}/matters?$top=10&$skip=10
         resp: Response = requests.request(
             method=method, url=endpoint, data=payload, headers=self.headers
         )

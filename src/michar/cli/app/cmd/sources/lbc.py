@@ -3,6 +3,7 @@ import michar.api.util as util
 import michar.api.crawlers.Krawlerz as krawlers
 from michar.api.crawlers.Krawlerz import LbcCityKrawler
 from michar.cli.app.cmd.crawler import crawl
+import time
 
 log = util.get_logger()
 
@@ -16,7 +17,7 @@ def lbc():
 
 
 @lbc.command()
-def matters():
+def matters(year: int):
     """"""
     krawler: LbcCityKrawler = krawlers.get_crawler(source="lbc")
 
@@ -26,7 +27,7 @@ def matters():
 
 
 @lbc.command()
-def events():
+def events(start_time: str, end_time: str):
     """"""
     krawler: LbcCityKrawler = krawlers.get_crawler(source="lbc")
 
