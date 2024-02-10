@@ -22,7 +22,6 @@ class LegistarScraper(object):
 
     def __post_init__(self):
         self.headers = {"Accept": "application/json"}
-        self.filters = {}
 
     matters_endpoint: str = "/matters"
     events_endpoint: str = "/events"
@@ -72,7 +71,7 @@ class LegistarScraper(object):
 
         return self.events
 
-    def query(self, endpoint: str, method: str = "GET", payload: dict = {}) -> dict:
+    def query(self, endpoint: str, method: str = "GET", payload: dict = None) -> dict:
         return self._request(f"{self.api}{endpoint}", method, payload)
 
     def _apply_filters(self, base_url: str) -> str:
@@ -93,7 +92,9 @@ class LegistarScraper(object):
             log.debug(f"\n*****\nFINAL URL with filters: {url_with_filters}\n*****\n")
         return url_with_filters
 
-    def _request(self, endpoint: str, method: str = "GET", payload: dict = {}) -> dict:
+    def _request(
+        self, endpoint: str, method: str = "GET", payload: dict = None
+    ) -> dict:
         log.debug(f"{method=}:{endpoint=}\n{json.dumps(payload, indent=4)}")
         if self.filters:
             endpoint = self._apply_filters(endpoint)
