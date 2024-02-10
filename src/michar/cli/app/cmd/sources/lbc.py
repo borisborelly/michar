@@ -44,11 +44,15 @@ def events():
     krawler: LBC = krawlers.get_crawler(source="lbc")
     events: list[Event] = krawler.events
 
-    filename = "report.md"
-    with open(filename, "w") as file:
-        for e in events:
-            file.write(e.markdown)
-    log.info(f"Results: {filename}")
+    for e in events:
+        print(e.markdown)
+
+    # filename = "report.md"
+    # with open(filename, "w") as file:
+    #     for e in events:
+    #         file.write(e.markdown)
+    #         print(e.markdown)
+    # log.info(f"Results: {filename}")
 
     # crawl_params: dict = {}
     # results: dict = krawler.crawl()

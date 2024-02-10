@@ -8,6 +8,7 @@ from michar.api.profile import ConfigProfile
 from michar.api.sources.legistar import Matter, Event, Record
 from datetime import datetime
 import base64
+import os
 
 start_time: datetime.time = datetime.now()
 
@@ -20,6 +21,7 @@ class LegistarScraper(object):
     client: str = None
     headers: dict = None
     filters: dict = None
+    use_cache: bool = True
 
     def __post_init__(self) -> "LegistarScraper":
         self.headers = {"Accept": "application/json"}
@@ -34,7 +36,9 @@ class LegistarScraper(object):
 
     @property
     def matters(self) -> list[Matter]:
-        return self._handle_matters(self.query(endpoint=self.matters_endpoint))
+        return self._handle_matters(
+            self.query(endpoint=self.matters_endpoint, use_cache=self.use_cache)
+        )
 
     def _handle_matters(self, data: list[dict]) -> list[Matter]:
         results: list[Matter] = []
@@ -44,9 +48,14 @@ class LegistarScraper(object):
 
     @property
     def events(self) -> list[Event]:
-        return self._handle_events(self.query(endpoint=self.events_endpoint))
+        return self._handle_events(
+            self.query(endpoint=self.events_endpoint, use_cache=self.use_cache)
+        )
 
-    def _handle_events(self, data: list[dict]) -> list[Event]:
+    def _handle_events(
+        self,
+        data: list[dict],
+    ) -> list[Event]:
         results: list[Event] = []
         for item in data:
             results.append(Event().from_dict(item))
@@ -85,8 +94,28 @@ class LegistarScraper(object):
 
     #     return self.events
 
-    def query(self, endpoint: str, method: str = "GET", payload: dict = None) -> dict:
-        return self._request(f"{self.api}{endpoint}", method, payload)
+    def query(
+        self,
+        endpoint: str,
+        method: str = "GET",
+        payload: dict = None,
+        use_cache: bool = False,
+    ) -> dict:
+        results_filename: str = f"{endpoint.split('/')[1]}.json"
+        if use_cache and os.path.exists(results_filename):
+            log.debug(
+                f"Skipping query... Using results from cached file {results_filename}"
+            )
+            return self._load_from_file(results_filename)
+        else:
+            json_results: dict = self._request(f"{self.api}{endpoint}", method, payload)
+            with open(results_filename, "w") as file:
+                json.dump(json_results, file, indent=4)
+            return json_results
+
+    def _load_from_file(self, filename: str) -> dict:
+        with open(filename, "r") as file:
+            return json.load(file)
 
     def _apply_filters(self, base_url: str) -> str:
         url_with_filters: str = base_url
