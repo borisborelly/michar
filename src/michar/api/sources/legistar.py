@@ -23,7 +23,9 @@ class Record(object):
 
     @property
     def markdown(self) -> str:
-        return tabulate(self.json, tablefmt="pipe")
+        return tabulate(
+            [(key, value) for key, value in self.dict.items()], tablefmt="pipe"
+        )
 
     @abc.abstractclassmethod
     def from_dict(self, data: dict) -> "Record":

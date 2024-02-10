@@ -43,9 +43,14 @@ def events():
     """"""
     krawler: LBC = krawlers.get_crawler(source="lbc")
     events: list[Event] = krawler.events
+    from rich.console import Console
+    from rich.markdown import Markdown
 
+    console = Console()
     for e in events:
-        print(e.markdown)
+        md = Markdown(e.markdown)
+        # print(e.markdown)
+        console.print(md)
 
     # filename = "report.md"
     # with open(filename, "w") as file:
