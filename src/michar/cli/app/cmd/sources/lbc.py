@@ -4,6 +4,8 @@ import michar.api.crawlers.Krawlerz as krawlers
 from michar.api.crawlers.Krawlerz import LBC
 from michar.cli.app.cmd.crawler import crawl
 from michar.api.sources.legistar import Event, Matter
+from rich.console import Console
+from rich.markdown import Markdown
 
 log = util.get_logger()
 
@@ -18,13 +20,20 @@ def lbc():
 
 @lbc.command()
 # @click.option("-t", "--time", type="str", help="YYYY-MM-DD", default=None)
-def matters(time):
-    """"""
+def matters():
+    """
+    Search for LBC Matters
+    """
     krawler: LBC = krawlers.get_crawler(source="lbc")
     matters: list[Matter] = krawler.matters
 
     # crawl_params: dict = {}
     # results: dict = krawler.crawl()
+    console = Console()
+    for m in matters:
+        md = Markdown(m.markdown)
+        # print(e.markdown)
+        console.print(md)
     print("...matters patrolling....")
 
 
@@ -40,11 +49,11 @@ event_end_time_stamp_opt: click.Option = click.option(
 # @event_start_time_stamp_opt
 # @event_end_time_stamp_opt
 def events():
-    """"""
+    """
+    Search for LBC Events
+    """
     krawler: LBC = krawlers.get_crawler(source="lbc")
     events: list[Event] = krawler.events
-    from rich.console import Console
-    from rich.markdown import Markdown
 
     console = Console()
     for e in events:
