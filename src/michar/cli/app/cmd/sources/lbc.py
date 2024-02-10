@@ -3,6 +3,7 @@ import michar.api.util as util
 import michar.api.crawlers.Krawlerz as krawlers
 from michar.api.crawlers.Krawlerz import LBC
 from michar.cli.app.cmd.crawler import crawl
+from michar.api.sources.legistar import Event, Matter
 
 log = util.get_logger()
 
@@ -20,6 +21,7 @@ def lbc():
 def matters(time):
     """"""
     krawler: LBC = krawlers.get_crawler(source="lbc")
+    matters: list[Matter] = krawler.matters
 
     # crawl_params: dict = {}
     # results: dict = krawler.crawl()
@@ -40,6 +42,7 @@ event_end_time_stamp_opt: click.Option = click.option(
 def events():
     """"""
     krawler: LBC = krawlers.get_crawler(source="lbc")
+    events: list[Event] = krawler.events
 
     # crawl_params: dict = {}
     # results: dict = krawler.crawl()

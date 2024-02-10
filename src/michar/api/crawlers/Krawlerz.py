@@ -5,6 +5,7 @@ from logging import Logger
 from michar.api.util import get_logger
 import json
 from michar.api.profile import ConfigProfile
+from michar.api.sources.legistar import Matter, Event
 from datetime import datetime
 import base64
 
@@ -31,12 +32,28 @@ class LegistarScraper(object):
         return self.url.format(client=self.client)
 
     @property
-    def matters(self) -> dict:
-        return self.query(endpoint=self.matters_endpoint)
+    def matters(self) -> list[Matter]:
+        return self._handle_matters(self.query(endpoint=self.matters_endpoint))
+
+    def _handle_matters(self, data: dict) -> list[Matter]:
+        results: list[Matter] = []
+        for entry in data.keys():
+            # print(key)
+            m: Matter = Matter()
+            results.append(m)
+        return results
 
     @property
     def events(self) -> dict:
         return self.query(endpoint=self.events_endpoint)
+
+    def _handle_matters(self, data: dict) -> list[Event]:
+        results: list[Event] = []
+        for key in data.keys():
+            # print(key)
+            e: Event = Event()
+            results.append(e)
+        return results
 
     def _withFilter(self, key: str, value: str):
         log.debug(f"\n{key=},{value=}\n")
@@ -83,11 +100,11 @@ class LegistarScraper(object):
 
             url_with_filters = f"{base_url}?$filter="
             for key, value in self.filters.items():
-                # TODO base 64 encoding
-                encoded_key = base64.b64encode(key.encode()).decode()
-                encoded_value = base64.b64encode(value.encode()).decode()
+                # # TODO base 64 encoding
+                # encoded_key = base64.b64encode(key.encode()).decode()
+                # encoded_value = base64.b64encode(value.encode()).decode()
                 log.debug(key, ":", value)
-                url_with_filters = f"{url_with_filters}{encoded_key}{encoded_value}"
+                url_with_filters = f"{url_with_filters}{key}{value}"
                 log.debug(f"{url_with_filters=}")
             log.debug(f"\n*****\nFINAL URL with filters: {url_with_filters}\n*****\n")
         return url_with_filters
@@ -132,8 +149,7 @@ def get_crawler(source: str) -> LegistarScraper:
     get a crawler for the specified source
     """
     profile: ConfigProfile = ConfigProfile()
-    if source == "lbc":
+    if source.upper() == "LBC":
         return LBC()
-        # return LbcCrawler(profile=profile, source=source)
     else:
         log.error("add another crawler impl")
