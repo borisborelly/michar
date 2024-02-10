@@ -5,7 +5,7 @@ from logging import Logger
 from michar.api.util import get_logger
 import json
 from michar.api.profile import ConfigProfile
-from michar.api.sources.legistar import Matter, Event
+from michar.api.sources.legistar import Matter, Event, Record
 from datetime import datetime
 import base64
 
@@ -21,8 +21,9 @@ class LegistarScraper(object):
     headers: dict = None
     filters: dict = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> "LegistarScraper":
         self.headers = {"Accept": "application/json"}
+        return self
 
     matters_endpoint: str = "/matters"
     events_endpoint: str = "/events"
@@ -35,64 +36,61 @@ class LegistarScraper(object):
     def matters(self) -> list[Matter]:
         return self._handle_matters(self.query(endpoint=self.matters_endpoint))
 
-    def _handle_matters(self, data: dict) -> list[Matter]:
+    def _handle_matters(self, data: list[dict]) -> list[Matter]:
         results: list[Matter] = []
-        for entry in data.keys():
-            # print(key)
-            m: Matter = Matter()
-            results.append(m)
+        for item in data:
+            results.append(Matter().from_dict(item))
         return results
 
     @property
-    def events(self) -> dict:
-        return self.query(endpoint=self.events_endpoint)
+    def events(self) -> list[Event]:
+        return self._handle_events(self.query(endpoint=self.events_endpoint))
 
-    def _handle_matters(self, data: dict) -> list[Event]:
+    def _handle_events(self, data: list[dict]) -> list[Event]:
         results: list[Event] = []
-        for key in data.keys():
-            # print(key)
-            e: Event = Event()
-            results.append(e)
+        for item in data:
+            results.append(Event().from_dict(item))
         return results
 
-    def _withFilter(self, key: str, value: str):
-        log.debug(f"\n{key=},{value=}\n")
-        self.filters.update({key: value})
-        return self
+    # def _withFilter(self, key: str, value: str):
+    #     log.debug(f"\n{key=},{value=}\n")
+    #     self.filters.update({key: value})
+    #     return self
 
-    def withMatterFilters(self, year: str):
-        # /matters?$filter=year(MatterAgendaDate)%20eq%202023
-        if year:
-            self._withFilter("year(MatterAgendaDate)", year)
-        return self
+    # def withMatterFilters(self, year: str):
+    #     # /matters?$filter=year(MatterAgendaDate)%20eq%202023
+    #     if year:
+    #         self._withFilter("year(MatterAgendaDate)", year)
+    #     return self
 
-    def withEventFilters(self, starting_date_range: str, ending_date_range: str):
-        # /events?$filter=EventDate+ge+datetime%272014-09-01%27+and+EventDate+lt+datetime%272014-10-01%27
-        if starting_date_range:
-            self._withFilter("EventDate>datetime", starting_date_range)
-        elif ending_date_range:
-            self._withFilter("EventDate<datetime", ending_date_range)
-        return self
+    # def withEventFilters(self, starting_date_range: str, ending_date_range: str):
+    #     # /events?$filter=EventDate+ge+datetime%272014-09-01%27+and+EventDate+lt+datetime%272014-10-01%27
+    #     if starting_date_range:
+    #         self._withFilter("EventDate>datetime", starting_date_range)
+    #     elif ending_date_range:
+    #         self._withFilter("EventDate<datetime", ending_date_range)
+    #     return self
 
-    def crawl_matters(self, **kwargs):
-        if kwargs.get("year"):
-            self.withMatterFilters(kwargs.get("year"))
+    # def crawl_matters(self, **kwargs):
+    #     if kwargs.get("year"):
+    #         self.withMatterFilters(kwargs.get("year"))
 
-        return self.matters
+    #     return self.matters
 
-    def crawl_events(self, **kwargs) -> dict:
-        if kwargs.get("start_time"):
-            self.withEventFilters(kwargs.get("start_time"))
-        if kwargs.get("end_time"):
-            self.withEventFilters(kwargs.get("end_time"))
+    # def crawl_events(self, **kwargs) -> dict:
+    #     if kwargs.get("start_time"):
+    #         self.withEventFilters(kwargs.get("start_time"))
+    #     if kwargs.get("end_time"):
+    #         self.withEventFilters(kwargs.get("end_time"))
 
-        return self.events
+    #     return self.events
 
     def query(self, endpoint: str, method: str = "GET", payload: dict = None) -> dict:
         return self._request(f"{self.api}{endpoint}", method, payload)
 
     def _apply_filters(self, base_url: str) -> str:
         url_with_filters: str = base_url
+        # TODO filter approach / test
         if self.filters:
             log.debug(
                 f"\tApplying filters to {base_url}:\n====={json.dumps(self.filters, indent=4)}\n=====\n"
@@ -111,7 +109,7 @@ class LegistarScraper(object):
 
     def _request(
         self, endpoint: str, method: str = "GET", payload: dict = None
-    ) -> dict:
+    ) -> list[dict]:
         log.debug(f"{method=}:{endpoint=}\n{json.dumps(payload, indent=4)}")
         if self.filters:
             endpoint = self._apply_filters(endpoint)
@@ -139,9 +137,10 @@ class LegistarScraper(object):
 @dataclass
 class LBC(LegistarScraper):
 
-    def __post_init__(self):
+    def __post_init__(self) -> "LBC":
         self.client = "LongBeach"
         self.url = "https://webapi.legistar.com/v1/{client}"
+        return self
 
 
 def get_crawler(source: str) -> LegistarScraper:
