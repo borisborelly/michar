@@ -1,33 +1,13 @@
-import rich_click as click
-import michar.api.util as util
-import michar.api.crawlers.Krawlerz as krawlers
-from typing import List
 from michar.cli.app.michar import gooza
-from michar.api.profile import ConfigProfile
 
 
-source_option: click.Option = click.option(
-    "-s",
-    "--source",
-    required=True,
-    default="lbc",
-    type=click.Choice(["lbc", "fbi"], case_sensitive=False),
-)
-
-
-@gooza.command()
-@source_option
-def crawl(source: str):
+@gooza.group()
+def crawl() -> None:
     """
-    crawl websites for data
+    crawl for data from available sources
     """
-    log = util.get_logger()
+    pass
 
-    krawler: krawlers.LbcCityKrawler = krawlers.get_crawler(source=source)
 
-    results: dict = krawler.crawl()
-
-    print(results)
-
-    # torrence
-    # https://www.torranceca.gov/government/city-clerk/commissions-and-advisory-boards/planning-commission/agendas-and-minutes/-folder-1334
+from .sources.lbc import *
+from .sources.torrance import *
