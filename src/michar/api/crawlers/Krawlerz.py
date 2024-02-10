@@ -39,34 +39,36 @@ class LegistarScraper(object):
     def events(self) -> dict:
         return self.query(endpoint=self.events_endpoint)
 
+    def _withFilter(self, key: str, value: str):
+        log.debug(f"\n{key=},{value=}\n")
+        self.filters.update({key: value})
+        return self
+
     def withMatterFilters(self, year: str):
-        print(f"{year=}")
-        if year:
-            self.filters.update({"year(MatterAgendaDate)": year})
         # /matters?$filter=year(MatterAgendaDate)%20eq%202023
+        if year:
+            self._withFilter("year(MatterAgendaDate)", year)
+        return self
 
     def withEventFilters(self, starting_date_range: str, ending_date_range: str):
-        print(f"{starting_date_range=}")
-        print(f"{ending_date_range=}")
         # /events?$filter=EventDate+ge+datetime%272014-09-01%27+and+EventDate+lt+datetime%272014-10-01%27
         if starting_date_range:
-            self.filters.update({"EventDate>datetime": starting_date_range})
+            self._withFilter("EventDate>datetime", starting_date_range)
         elif ending_date_range:
-            self.filters.update({"EventDate<datetime": ending_date_range})
+            self._withFilter("EventDate<datetime", ending_date_range)
+        return self
 
-    def crawl_matters(self, matter_filters: dict = None):
-        if matter_filters:
-            if matter_filters["year"]:
-                self.withMatterFilters(matter_year=matter_filters["year"])
+    def crawl_matters(self, **kwargs):
+        if kwargs.get("year"):
+            self.withMatterFilters(kwargs.get("year"))
 
         return self.matters
 
-    def crawl_events(self, event_filters: dict = None) -> dict:
-        if event_filters:
-            if event_filters["start_time"]:
-                self.withEventFilters(starting_date_range=event_filters["start_time"])
-            if event_filters["end_time"]:
-                self.withEventFilters(starting_date_range=event_filters["end_time"])
+    def crawl_events(self, **kwargs) -> dict:
+        if kwargs.get("start_time"):
+            self.withEventFilters(kwargs.get("start_time"))
+        if kwargs.get("end_time"):
+            self.withEventFilters(kwargs.get("end_time"))
 
         return self.events
 
@@ -79,10 +81,14 @@ class LegistarScraper(object):
             log.debug(
                 f"\tApplying filters to {base_url}:\n====={json.dumps(self.filters, indent=4)}\n=====\n"
             )
+
             url_with_filters = f"{base_url}?$filter="
             for key, value in self.filters.items():
+                # TODO base 64 encoding
+                encoded_key = base64.b64encode(key.encode()).decode()
+                encoded_value = base64.b64encode(value.encode()).decode()
                 log.debug(key, ":", value)
-                url_with_filters = f"{url_with_filters}{key}{value}"
+                url_with_filters = f"{url_with_filters}{encoded_key}{encoded_value}"
                 log.debug(f"{url_with_filters=}")
             log.debug(f"\n*****\nFINAL URL with filters: {url_with_filters}\n*****\n")
         return url_with_filters
@@ -113,7 +119,7 @@ class LegistarScraper(object):
 
 
 @dataclass
-class LbcCityKrawler(LegistarScraper):
+class LBC(LegistarScraper):
 
     def __post_init__(self):
         self.client = "LongBeach"
@@ -126,7 +132,7 @@ def get_crawler(source: str) -> LegistarScraper:
     """
     profile: ConfigProfile = ConfigProfile()
     if source == "lbc":
-        return LbcCityKrawler()
+        return LBC()
         # return LbcCrawler(profile=profile, source=source)
     else:
         log.error("add another crawler impl")
