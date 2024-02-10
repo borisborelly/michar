@@ -6,6 +6,7 @@ from michar.api.util import get_logger
 import json
 from michar.api.profile import ConfigProfile
 from datetime import datetime
+import base64
 
 start_time: datetime.time = datetime.now()
 
