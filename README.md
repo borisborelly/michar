@@ -24,8 +24,8 @@ michar --help
 
 ```shell
 brew install pyenv
-pyenv install 3.9
-pyenv local 3.9
+pyenv install 3.12
+pyenv local 3.12
 ```
 
 #### tox

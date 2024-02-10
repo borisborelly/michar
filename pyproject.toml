@@ -8,7 +8,7 @@ packages = [{ include = "michar", from = "src" }]
 
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.12"
 rich = "^13.7.0"
 rich-click = "^1.7.2"
 rich-traceback = "^1.0.3"
