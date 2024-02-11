@@ -27,13 +27,22 @@ def matters():
     krawler: LBC = krawlers.get_crawler(source="lbc")
     matters: list[Matter] = krawler.matters
 
+    headers = list(matters[0].dict.keys())
+    data = [obj.dict for obj in matters]
+    from tabulate import tabulate
+
+    markdown_table = tabulate(matters, headers=headers, tablefmt="pipe")
+
+    # Print Markdown table
+    print(markdown_table)
+
     # crawl_params: dict = {}
     # results: dict = krawler.crawl()
-    console = Console()
-    for m in matters:
-        md = Markdown(m.markdown)
-        # print(e.markdown)
-        console.print(md)
+    # console = Console()
+    # for m in matters:
+    #     md = Markdown(m.markdown)
+    #     # print(e.markdown)
+    #     console.print(md)
     print("...matters patrolling....")
 
 
@@ -55,11 +64,20 @@ def events():
     krawler: LBC = krawlers.get_crawler(source="lbc")
     events: list[Event] = krawler.events
 
-    console = Console()
-    for e in events:
-        md = Markdown(e.markdown)
-        # print(e.markdown)
-        console.print(md)
+    headers = list(events[0].dict.keys())
+    print(f"{headers=}")
+    data = [obj.dict for obj in events]
+    from tabulate import tabulate
+
+    markdown_table = tabulate(events, headers=headers, tablefmt="pipe")
+
+    # Print Markdown table
+    print(markdown_table)
+
+    # for e in events:
+    #     md = Markdown(e.markdown)
+    #     # print(e.markdown)
+    #     console.print(md)
 
     # filename = "report.md"
     # with open(filename, "w") as file:

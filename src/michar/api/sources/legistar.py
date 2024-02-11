@@ -45,9 +45,9 @@ class Event(Record):
     location: str = None
     time: str = None
     date: str = None
-    url: str = None
+    # url: str = None
     last_updated: str = None
-    minutes: str = None  # PDF
+    # minutes: str = None  # PDF
 
     def from_dict(self, data: dict) -> "Event":
         self.id = data["EventId"]
@@ -55,7 +55,7 @@ class Event(Record):
         self.location = data["EventLocation"]
         self.time = data["EventTime"]
         self.date = data["EventDate"]
-        self.url = data["EventInSiteURL"]
+        # self.url = data["EventInSiteURL"]
         self.last_updated = data["EventLastModifiedUtc"]
-        self.minutes = data["EventMinutesFile"]
+        # self.minutes = data["EventMinutesFile"]
         return self
